@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+:root{
+  --primary-color: rgba(25, 24, 37);
+  --secondary-color: #865DFF;
+  --tertiary-color: #E384FF;
+  --text-color: #f2f2f2
+}
+
+
+*::-webkit-scrollbar{
+  width: 0;
+}
+
+
+html, body, #root, .App {
+  min-height: 100%;
+  -webkit-tap-highlight-color:transparent;
+  background-color: #130f40;
+background-image: linear-gradient(315deg, #130f40 0%, #000000 74%);
+background-repeat: no-repeat;
+}
+
