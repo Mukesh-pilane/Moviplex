@@ -17,7 +17,6 @@ const Movie = () => {
         .then(res => res.json())
         .then(data => {
           setMovie(data)
-          console.log(data)
         })
     }
     
@@ -25,7 +24,7 @@ const Movie = () => {
         fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=4e44d9029b1270a757cddc766a1bcb63`)
         .then(res => res.json())
         .then(data => {
-          console.log(data)
+
         })
     }
     
@@ -76,10 +75,10 @@ const Movie = () => {
                 <div className="movie__links_btn">
                                 {
                     currentMovieDetail && currentMovieDetail.homepage && <a href={currentMovieDetail.homepage} target="_blank"
-                    style={{textDecoration: "none"}}><p><span className="movie__homeButton movie__Button">Homepage <i className="newTab fas fa-external-link-alt"></i></span></p></a>
+                    style={{textDecoration: "none"}}><p><span className="movie__homeButton movie__Button gradient-background">Homepage <i className="newTab fas fa-external-link-alt"></i></span></p></a>
                 }
                 {
-                    currentMovieDetail && currentMovieDetail.imdb_id && <a href={"https://www.imdb.com/title/" + currentMovieDetail.imdb_id} target="_blank" style={{textDecoration: "none"}}><p><span className="movie__imdbButton movie__Button">IMDb<i className="newTab fas fa-external-link-alt"></i></span></p></a>
+                    currentMovieDetail && currentMovieDetail.imdb_id && <a href={"https://www.imdb.com/title/" + currentMovieDetail.imdb_id} target="_blank" style={{textDecoration: "none"}}><p><span className="movie__imdbButton movie__Button gradient-background">IMDb<i className="newTab fas fa-external-link-alt"></i></span></p></a>
                 }
                 </div>
             </div>

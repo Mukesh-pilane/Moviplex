@@ -1,13 +1,15 @@
 import React, {useEffect, useState} from "react"
 import "./movieList.css"
-import { useParams } from "react-router-dom"
+import { useParams, useLocation } from "react-router-dom"
 import Cards from "../card/Card"
 
 const MovieList = () => {
     
     const [movieList, setMovieList] = useState([])
+    const location = useLocation()
     const {type} = useParams()
-
+    let url;
+    console.log(location.pathname)
     useEffect(() => {
         getData()
     }, [])

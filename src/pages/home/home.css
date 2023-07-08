@@ -18,7 +18,7 @@
     width: 100%;
     justify-content: flex-end;
     align-items: flex-start;
-    background-image: linear-gradient(#19182500 20%, #191825FF 90%);
+    background-image: linear-gradient(rgb(0,0,0, 0), rgb(0,0,0, 1));
     opacity: 1;
     transition: opacity .3s;
 }   

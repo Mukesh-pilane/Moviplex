@@ -145,6 +145,7 @@
 .movie__production_list{
     display: flex;
     align-items: flex-end;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 2rem;
 }

@@ -9,7 +9,8 @@ const Header = () => {
     const ToggleSidebar = () => {
         isOpen === true ? setIsopen(false) : setIsopen(true);
     }
-  
+    const genres = [{"id":28,"name":"Action"},{"id":12,"name":"Adventure"},{"id":16,"name":"Animation"},{"id":35,"name":"Comedy"},{"id":80,"name":"Crime"},{"id":99,"name":"Documentary"},{"id":18,"name":"Drama"},{"id":10751,"name":"Family"},{"id":14,"name":"Fantasy"},{"id":36,"name":"History"},{"id":27,"name":"Horror"},{"id":10402,"name":"Music"},{"id":9648,"name":"Mystery"},{"id":10749,"name":"Romance"},{"id":878,"name":"Science Fiction"},{"id":10770,"name":"TV Movie"},{"id":53,"name":"Thriller"},{"id":10752,"name":"War"},{"id":37,"name":"Western"}]
+
     return (
       <>
         <div className="header">
@@ -28,16 +29,33 @@ const Header = () => {
                         <div className="sd-body">
                         <ul>
                         <li>
-                        <Link className="sd-link" to="/movies/popular" style={{textDecoration: "none"}}>Popular
+                        <Link className="sd-link" to="/movies/popular" style={{textDecoration: "none"}}><span><i className="fa-solid fa-heart"></i></span>  Popular
                         </Link>
                         </li>
                         <li>
-                        <Link className="sd-link" to="/movies/top_rated" style={{textDecoration: "none"}}>Top Rated</Link>
+                        <Link className="sd-link" to="/movies/top_rated" style={{textDecoration: "none"}}><i class="fa-sharp fa-solid fa-square-poll-vertical"></i> Top Rated</Link>
                         </li>
                         <li>
-                <Link className="sd-link" to="/movies/upcoming" style={{textDecoration: "none"}}>Upcoming</Link>
+                <Link className="sd-link" to="/movies/upcoming" style={{textDecoration: "none"}}><i class="fa-solid fa-calendar"></i> Upcoming</Link>
                 </li>
                 </ul>
+                <div className="genres">
+                        <h4>
+                        Genres</h4>
+                    <ul>
+                    {
+                      genres.map(function(item, index){
+                      const {name:genre, id}=item
+                        return(
+                                                <li>
+                        <Link className="sd-link" to={`/genre/${id}`} style={{textDecoration: "none"}}><span><i class="fa-solid fa-tag"></i></span> {genre}
+                        </Link>
+                        </li>
+                        )
+                      })
+                    }
+                </ul>
+                        </div>
                         </div>
                     </div>
                     <div className={`sidebar-overlay ${isOpen == true ? 'active' : ''}`} onClick={ToggleSidebar}></div>
