@@ -1,0 +1,54 @@
+.castCard{
+    width:100px;
+    height: 100px;
+}
+
+.castCard img{
+    width:100%;
+    height: 100%;
+    border-radius:70px;
+    object-fit: cover;
+    background-color: transparent;
+    transition: all 100ms cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.castCarousel{
+    padding:4rem
+}
+.castCarouselContainer{
+    max-width:1200px;
+    margin: 0 auto;
+}
+
+.castCarousel__arrow-prev{
+    border: none;
+    background:none;
+    left: -15px;
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 12px;
+    height: 12px;
+    padding: 0;
+    transform: translate(0, -50%);
+    cursor: pointer;
+}
+
+.castCarousel__arrow-next{
+    background:none;
+    border: none;
+    right: -15px;
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 12px;
+    height: 12px;
+    padding: 0;
+    transform: translate(0, -50%);
+    cursor: pointer; 
+}
+
+.slick-slide div{
+    display: flex;
+    justify-content: center;
+}

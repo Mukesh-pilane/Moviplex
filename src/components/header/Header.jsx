@@ -33,10 +33,10 @@ const Header = () => {
                         </Link>
                         </li>
                         <li>
-                        <Link className="sd-link" to="/movies/top_rated" style={{textDecoration: "none"}}><i class="fa-sharp fa-solid fa-square-poll-vertical"></i> Top Rated</Link>
+                        <Link className="sd-link" to="/movies/top_rated" style={{textDecoration: "none"}}><i className="fa-sharp fa-solid fa-square-poll-vertical"></i> Top Rated</Link>
                         </li>
                         <li>
-                <Link className="sd-link" to="/movies/upcoming" style={{textDecoration: "none"}}><i class="fa-solid fa-calendar"></i> Upcoming</Link>
+                <Link className="sd-link" to="/movies/upcoming" style={{textDecoration: "none"}}><i className="fa-solid fa-calendar"></i> Upcoming</Link>
                 </li>
                 </ul>
                 <div className="genres">
@@ -47,8 +47,8 @@ const Header = () => {
                       genres.map(function(item, index){
                       const {name:genre, id}=item
                         return(
-                                                <li>
-                        <Link className="sd-link" to={`/genre/${id}`} style={{textDecoration: "none"}}><span><i class="fa-solid fa-tag"></i></span> {genre}
+                                                <li key={index}>
+                        <Link className="sd-link" to={`/genre/${genre}`} style={{textDecoration: "none"}}><span><i className="fa-solid fa-tag"></i></span> {genre}
                         </Link>
                         </li>
                         )

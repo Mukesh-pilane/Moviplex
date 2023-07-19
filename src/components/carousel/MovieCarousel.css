@@ -1,0 +1,42 @@
+.mySlickCarouselContainer{
+    padding: 0rem;
+}
+
+.mySlickCarouselContainer h1{
+    margin-left: 4rem;
+}
+
+.mySlickCarousel{
+    padding:2rem 4rem;
+    position: relative;
+}
+
+
+
+.slick-carousel-arrow{
+    position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+ 
+  border: none;
+  z-index: 999;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slick-arrow-prev, .slick-arrow-next{
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    transform: none;
+    transition: all .3s ease-in-out;
+}
+
+.mySlickCarousel .slick-arrow-prev{
+    left: 0px;
+}
+.mySlickCarousel .slick-arrow-next{
+    right: 50px;
+}

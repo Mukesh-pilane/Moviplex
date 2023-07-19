@@ -5,6 +5,7 @@ import { Carousel } from 'react-responsive-carousel';
 import { Link } from "react-router-dom";
 import MovieList from "../../components/movieList/MovieList";
 import {ArrowLeft, ArrowRight} from '../../components/allAvg.jsx'
+import MovieCarousel from "../../components/carousel/MovieCarousel";
 
 const Home = () => {
 
@@ -29,14 +30,14 @@ const Home = () => {
                       hasPrev && (
                         <button type="button" onClick={onClickHandler} title={label} className="carousel-arrow arrow-prev">
             
-            <ArrowLeft/>
+            <ArrowLeft height="1.5rem" width="1.5rem"/>
                         </button>
                       )
                     }
                     renderArrowNext={(onClickHandler, hasNext, label) =>
                       hasNext && (
                         <button type="button" onClick={onClickHandler} title={label} className="carousel-arrow arrow-next">
-                          < ArrowRight />
+                          < ArrowRight height="1.5rem" width="1.5rem"/>
                         </button>
                       )
                     }
@@ -66,6 +67,9 @@ const Home = () => {
                     }
                 </Carousel>
                 <MovieList />
+                <MovieCarousel keyword="popular"/>
+                <MovieCarousel keyword="upcoming"/>
+                <MovieCarousel keyword="top_rated"/>
             </div>
         </>
     )

@@ -3,7 +3,8 @@
     align-items: center;
     display: flex;
     justify-content:space-between;
-    background-color: var(--primary-color);
+    backdrop-filter: blur(3.5px);
+    background-color: rgba(0,0,0,.25);
 }
 
 .headerLeft {

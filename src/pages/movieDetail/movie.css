@@ -14,17 +14,23 @@
 
 .movie__backdrop {
     width: 100%;
+    
     height: 500px;
     object-fit:cover;
     object-position: 0 35%;
 }
-
-.movie__detail {
-    align-items: center;
-    padding: 1rem 2rem;
-    display: flex;
+.movie__detail{
     position: absolute;
-    bottom: 0px;
+    left: 0%;
+    bottom: 0%;
+    width: 100%;
+}
+.movie_detail_container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 1rem 0rem;
+    display: flex;
+    align-items: center;
 }
 
 .movie__detailLeft {
@@ -171,7 +177,7 @@
   }
   .movie__intro {
     width: 100%;
-    height: 1000px;
+    height: 800px;
 }
 
 .movie__name{
