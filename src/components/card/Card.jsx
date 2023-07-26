@@ -1,31 +1,38 @@
 import React, {useEffect, useState} from "react"
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
 import "./card.css"
 import { Link } from "react-router-dom"
-
+import Loader from "../Loader/Loader"
+import LazyLoad from 'react-lazyload';
+import { Nothing } from "../allAvg";
 const Cards = ({movie}) => {
 
-    const [isLoading, setIsLoading] = useState(true)
-
+    const [loaded, setLoaded] = useState(false);
+    const [error, setError] = useState(false);
+  
     useEffect(() => {
-        setTimeout(() => {
-            setIsLoading(false)
-        }, 1500)
-    }, []) 
+      return () => setLoaded(false);
+    }, []); 
 
     return <>
-    {
-        isLoading
-        ?
-        <div className="cards">
-            <SkeletonTheme color="#202020" highlightColor="#444">
-                <Skeleton height={300} duration={2} />
-            </SkeletonTheme>
-        </div>
-        :
+    
+     <LazyLoad height={300} offset={200}>
         <Link to={`/movie/${movie.id}`} style={{textDecoration:"none", color:"white"}}>
             <div className="cards">
-                <img className="cards__img" src={`https://image.tmdb.org/t/p/original${movie?movie.poster_path:""}`} />
+            {!loaded ? (
+            <Loader />
+        ) : null}
+                <img 
+                          error={error ? 1 : 0}
+                          onLoad={() => setLoaded(true)}
+                          style={!loaded ? { display: 'none' } : {}}
+                          onError={e => {
+                            setError(true);
+                            if (e.target.src !== `${Nothing}`) {
+                              e.target.src = `${Nothing}`;
+                            }
+                          }}
+                
+                className="cards__img" src={`https://image.tmdb.org/t/p/original${movie?movie.poster_path:""}`} />
                 <div className="cards__overlay">
                     <div className="card__title">{movie?movie.original_title:""}</div>
                     <div className="card__runtime">
@@ -36,7 +43,7 @@ const Cards = ({movie}) => {
                 </div>
             </div>
         </Link>
-    }
+        </LazyLoad>
     </>
 }
 

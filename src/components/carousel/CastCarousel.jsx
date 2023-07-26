@@ -1,25 +1,28 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Slider from 'react-slick';
-import { ArrowLeft, ArrowRight } from '../allAvg';
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 import "./CastCarousel.css"
-import { DeafaultCastIcon } from '../allAvg';
-const CastCard = ({cast})=>{
-    return(
-        <div className="castCard">
-            {
-                cast.profile_path ?
-                <img src={`https://image.tmdb.org/t/p/original${cast.profile_path}`} alt={cast.name} />
-            : <DeafaultCastIcon />
-            }
-        </div>
-    )
-}
+import {Link} from "react-router-dom"
+import { ArrowLeft, ArrowRight, DeafaultCastIcon } from '../allAvg';
+
+
 
 const CastCarousel = ({casts}) => {
 
+    
+    const CastCard = ({cast})=>{
+      return(
+          <div className="castCard">
+              {
+                  cast.profile_path ?
+                  <img src={`https://image.tmdb.org/t/p/original${cast.profile_path}`} alt={cast.name} />
+              : <DeafaultCastIcon />
+              }
+          </div>
+      )
+    }
     const PrevArrow = (props) => {
         const { onClick } = props;
         return (

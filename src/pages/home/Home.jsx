@@ -52,6 +52,7 @@ const Home = () => {
                                     <img src={`https://image.tmdb.org/t/p/original${movie && movie.backdrop_path}`} />
                                 </div>
                                 <div className="posterImage__overlay">
+                                    <div className="posterImage__overlay-container">
                                     <div className="posterImage__title">{movie ? movie.original_title: ""}</div>
                                     <div className="posterImage__runtime">
                                         {movie ? movie.release_date : ""}
@@ -61,12 +62,12 @@ const Home = () => {
                                         </span>
                                     </div>
                                     <div className="posterImage__description">{movie ? movie.overview : ""}</div>
+                                    </div>
                                 </div>
                             </Link>
                         ))
                     }
                 </Carousel>
-                <MovieList />
                 <MovieCarousel keyword="popular"/>
                 <MovieCarousel keyword="upcoming"/>
                 <MovieCarousel keyword="top_rated"/>

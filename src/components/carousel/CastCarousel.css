@@ -13,11 +13,14 @@
 }
 
 .castCarousel{
-    padding:4rem
+    padding:2rem 4rem
 }
 .castCarouselContainer{
     max-width:1200px;
     margin: 0 auto;
+}
+.castCarouselContainer> h1{
+    margin-bottom: 1rem;
 }
 
 .castCarousel__arrow-prev{
@@ -48,7 +51,13 @@
     cursor: pointer; 
 }
 
-.slick-slide div{
+.slick-slide>div{
     display: flex;
     justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+.castCarousel{
+    padding: 2rem;
+}
 }

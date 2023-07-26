@@ -25,7 +25,6 @@ const Movie = () => {
               .then(castResponse => {
                 const castData = castResponse.data;
                 setCasts(castData.cast);
-                console.log(castData);
               })
               .catch(castError => {
                 console.log(castError);
@@ -51,7 +50,7 @@ const Movie = () => {
             <div className="movie__intro">
                 <img className="movie__backdrop" src={`https://image.tmdb.org/t/p/original${currentMovieDetail ? currentMovieDetail.backdrop_path : ""}`} />
             <div className="movie__detail">
-                <div className="movie_detail_container">
+                <div className="movie__detail_container">
                 <div className="movie__detailLeft">
                     <div className="movie__posterBox">
                         <img className="movie__poster" src={`https://image.tmdb.org/t/p/original${currentMovieDetail ? currentMovieDetail.poster_path : ""}`} />
@@ -93,6 +92,7 @@ const Movie = () => {
                 :null
             }
         <div className="movie__links">
+            <div className="movie__links-container">
                 <div className="movie__links_heading">Useful Links</div>
                 <div className="movie__links_btn">
                                 {
@@ -104,7 +104,10 @@ const Movie = () => {
                 }
                 </div>
             </div>
+            </div>
             <div className="movie__production">
+                <div className="movie__production-container">
+
                         <div className="movie__production_heading">Production companies</div>
                 <div className="movie__production_list">
                                 {
@@ -121,6 +124,7 @@ const Movie = () => {
                         </React.Fragment>)
                     })
                 }
+                </div>
                 </div>
             </div>
             
