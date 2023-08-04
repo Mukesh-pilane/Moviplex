@@ -1,0 +1,22 @@
+.person{
+    padding: 0 4rem;
+}
+
+.person__detail{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+.person__detail-img{
+    width:352px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.86) 0px 22px 40px 6px;
+}
+
+.person__detail_info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    
+    width: 50%;
+    gap: 1rem;
+}

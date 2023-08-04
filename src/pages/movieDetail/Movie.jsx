@@ -3,6 +3,7 @@ import "./movie.css"
 import { useParams } from "react-router-dom"
 import axios from "axios"
 import CastCarousel from "../../components/carousel/CastCarousel"
+import tmdbapi from "../../tmdbapi"
 
 const Movie = () => {
     const [currentMovieDetail, setMovie] = useState()
@@ -10,32 +11,33 @@ const Movie = () => {
     const { id } = useParams()
 
     useEffect(() => {
-        getData()
+        getMovieData()
+        getCastData()
         getVideo()
         window.scrollTo(0,0)
     }, [])
 
-    const getData = () => {
-        axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US`)
-          .then(response => {
-            const movieData = response.data;
-            setMovie(movieData);
-      
-            axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=4e44d9029b1270a757cddc766a1bcb63`)
-              .then(castResponse => {
-                const castData = castResponse.data;
-                setCasts(castData.cast);
-              })
-              .catch(castError => {
-                console.log(castError);
+    const getMovieData = async () => {
+          try {
+            const res = await tmdbapi.get(`/movie/${id}`, {
+                params: {
+                  append_to_response: 'videos',
+                },
               });
-          })
-          .catch(error => {
-            console.log(error);
-          });
+              setMovie(res.data);
+          } catch (err) {
+            console.log(err);
+          }
       };
       
-    
+    const getCastData = async () =>{
+        try {
+            const res = await tmdbapi.get(`/movie/${id}/credits`);
+            setCasts(res.data.cast);
+        } catch (err) {
+            console.log(err);
+        }
+    }
     const getVideo = () => {
         fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=4e44d9029b1270a757cddc766a1bcb63`)
         .then(res => res.json())

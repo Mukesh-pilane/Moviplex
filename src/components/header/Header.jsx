@@ -29,26 +29,27 @@ const Header = () => {
                         <div className="sd-body">
                         <ul>
                         <li>
-                        <Link className="sd-link" to="/movies/popular" style={{textDecoration: "none"}}><span><i className="fa-solid fa-heart"></i></span>  Popular
+                        <Link className="sd-link" to={`${import.meta.env.VITE_BASE_URL}/movies/popular`} style={{textDecoration: "none"}}><span><i className="fa-solid fa-heart"></i></span>  Popular
                         </Link>
                         </li>
                         <li>
-                        <Link className="sd-link" to="/movies/top_rated" style={{textDecoration: "none"}}><i className="fa-sharp fa-solid fa-square-poll-vertical"></i> Top Rated</Link>
+                        <Link className="sd-link" to={`${import.meta.env.VITE_BASE_URL}/movies/top_rated`} style={{textDecoration: "none"}}><i className="fa-sharp fa-solid fa-square-poll-vertical"></i> Top Rated</Link>
                         </li>
                         <li>
-                <Link className="sd-link" to="/movies/upcoming" style={{textDecoration: "none"}}><i className="fa-solid fa-calendar"></i> Upcoming</Link>
+                <Link className="sd-link" to={`${import.meta.env.VITE_BASE_URL}/movies/upcoming`} style={{textDecoration: "none"}}><i className="fa-solid fa-calendar"></i> Upcoming</Link>
                 </li>
                 </ul>
                 <div className="genres">
                         <h4>
                         Genres</h4>
                     <ul>
+                      
                     {
                       genres.map(function(item, index){
                       const {name:genre, id}=item
                         return(
                                                 <li key={index}>
-                        <Link className="sd-link" to={`/genre/${genre}`} style={{textDecoration: "none"}}><span><i className="fa-solid fa-tag"></i></span> {genre}
+                        <Link className="sd-link" to={`${import.meta.env.VITE_BASE_URL}/genre/${genre}`} style={{textDecoration: "none"}}><span><i className="fa-solid fa-tag"></i></span> {genre}
                         </Link>
                         </li>
                         )
