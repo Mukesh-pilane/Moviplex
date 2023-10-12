@@ -16,7 +16,7 @@ const Cards = ({movie}) => {
     return <>
     
      <LazyLoad height={300} offset={200}>
-        <Link to={`${import.meta.env.VITE_BASE_URL}/movie/${movie.id}`} style={{textDecoration:"none", color:"white"}}>
+        <Link to={`/movie/${movie.id}`} style={{textDecoration:"none", color:"white"}}>
             <div className="cards">
             {!loaded ? (
             <Loader />

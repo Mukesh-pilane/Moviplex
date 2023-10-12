@@ -26,11 +26,10 @@ const NextArrow = (props) => {
   );
 };
 
-const Carousel = ({keyword}) => {
-  const [movieList, setMovieList] = useState([]);
+const Carousel = ({keyword, data}) => {
+  const movieList = data?.results
   const [totalShow, setTotalShow] = useState(null);
   const sliderElement = useRef();
-  let url = `https://api.themoviedb.org/3/movie/${keyword ? keyword : 'popular'}?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US`
 
   const settings = {
     dots: false,
@@ -45,38 +44,24 @@ const Carousel = ({keyword}) => {
 
   const changeTotalShow = () => {
     let totalItems = Math.round(sliderElement.current.offsetWidth / 220);
-    if (totalItems > movieList.length) {
-      totalItems = movieList.length;
+    if (totalItems > movieList?.length) {
+      totalItems = movieList?.length;
     }
     setTotalShow(totalItems);
   };
-  const getData = () => {
-    axios
-      .get(url)
-      .then((response) => {
-        const data = response.data;
-        setMovieList(data.results);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-  useEffect(() => {
-    getData();
-  }, [keyword]);
+  
   useEffect(() => {
     changeTotalShow();
     window.addEventListener('resize', changeTotalShow);
     return () => window.removeEventListener('resize', changeTotalShow);
   }, [movieList]);
-
   return (
     <div className="movieList">
 
     <div className="mySlickCarouselContainer"  ref={sliderElement}>
-      <h1>{keyword.toUpperCase()}</h1>
+      <h1>{keyword?.toUpperCase()}</h1>
     <Slider {...settings} className='mySlickCarousel'>
-      {movieList.map((movie, index) => {
+      {movieList?.map((movie, index) => {
         return <Cards movie={movie} key={index} />;
       })}
     </Slider>

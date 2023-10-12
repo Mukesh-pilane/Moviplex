@@ -6,15 +6,36 @@ import { Link } from "react-router-dom";
 import MovieList from "../../components/movieList/MovieList";
 import {ArrowLeft, ArrowRight} from '../../components/allAvg.jsx'
 import MovieCarousel from "../../components/carousel/MovieCarousel";
+import tmdbapi from "../../tmdbapi"
 
 const Home = () => {
 
-    const [ popularMovies, setPopularMovies ] = useState([])
+    const [ popularMovies, setPopularMovies ] = useState()
+    const [ upcomingMovies, setUpcomingMovies ] = useState()
+    const [ratedMovies, setRatedMovies ] = useState()
+
+
+    const getData = async () => {
+      try {
+        const res = await tmdbapi.get(`/movie/popular`);
+        setPopularMovies(res.data)
+        const res1 = await tmdbapi.get(`/movie/upcoming`);
+        setUpcomingMovies(res1.data)
+        const res2 = await tmdbapi.get(`/movie/top_rated`);
+        setRatedMovies(res2.data)
+
+      } catch (err) {
+      //   history.push(process.env.PUBLIC_URL + '/error');
+        console.log(err)
+      }
+      };
 
     useEffect(() => {
-        fetch("https://api.themoviedb.org/3/movie/popular?api_key=81d04a7031398025fccc99dfebd718f3&language=en-US")
-        .then(res => res.json())
-        .then(data => setPopularMovies(data.results))
+      getData()
+      return ()=>{
+        setUpcomingMovies()
+        setRatedMovies()
+      }
     }, [])
 
     return (
@@ -44,7 +65,7 @@ const Home = () => {
                     className="my-carousel"
                 >
                     {
-                        popularMovies.map((movie,index)=> (
+                        popularMovies?.results.map((movie,index)=> (
                             <Link 
                             key={index}
                             style={{textDecoration:"none",color:"white"}} to={`/movie/${movie.id}`} >
@@ -68,9 +89,9 @@ const Home = () => {
                         ))
                     }
                 </Carousel>
-                <MovieCarousel keyword="popular"/>
-                <MovieCarousel keyword="upcoming"/>
-                <MovieCarousel keyword="top_rated"/>
+                <MovieCarousel keyword="popular" data={popularMovies}/>
+                <MovieCarousel keyword="upcoming" data={upcomingMovies}/>
+                <MovieCarousel keyword="top_rated" data={ratedMovies} />
             </div>
         </>
     )

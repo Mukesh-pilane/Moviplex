@@ -14,7 +14,7 @@ const CastCarousel = ({casts}) => {
     
     const CastCard = ({cast})=>{
       return(
-        <Link to={`${import.meta.env.VITE_BASE_URL}/person/${cast.id}`}>
+        <Link to={`/person/${cast.id}`}>
           <div className="castCard">
               {
                   cast.profile_path ?

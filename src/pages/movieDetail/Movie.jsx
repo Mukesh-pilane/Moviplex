@@ -1,21 +1,29 @@
 import React, {useEffect, useState} from "react"
 import "./movie.css"
 import { useParams } from "react-router-dom"
-import axios from "axios"
 import CastCarousel from "../../components/carousel/CastCarousel"
 import tmdbapi from "../../tmdbapi"
-
+import MovieCarousel from "../../components/carousel/MovieCarousel"
 const Movie = () => {
     const [currentMovieDetail, setMovie] = useState()
     const [casts, setCasts] = useState()
-    const { id } = useParams()
+    const [recommendations, setRecommendations] = useState()
+    const { id, page} = useParams()
 
     useEffect(() => {
         getMovieData()
         getCastData()
         getVideo()
+        getRecommendations()
         window.scrollTo(0,0)
+        return ()=>{
+            setCasts();
+            setMovie();
+            setRecommendations();
+        }
     }, [])
+    
+
 
     const getMovieData = async () => {
           try {
@@ -45,7 +53,23 @@ const Movie = () => {
 
         })
     }
-    
+    const getRecommendations =  async () => {
+        try {
+          const res = await tmdbapi.get(`/movie/${id}/recommendations`,{
+            params: {
+                page
+            }
+          } );
+          setRecommendations(res?.data)
+
+        } catch (err) {
+        //   history.push(process.env.PUBLIC_URL + '/error');
+          console.log(err)
+        }
+      };
+      
+
+
     return (
       <>
         <div className="movie">
@@ -107,7 +131,15 @@ const Movie = () => {
                 </div>
             </div>
             </div>
-            <div className="movie__production">
+
+            {
+            recommendations?
+        <MovieCarousel data={recommendations} keyword={"Recommended movies"}/>
+        :null
+        }
+            {
+                currentMovieDetail?.production_companies ?
+                <div className="movie__production">
                 <div className="movie__production-container">
 
                         <div className="movie__production_heading">Production companies</div>
@@ -129,6 +161,10 @@ const Movie = () => {
                 </div>
                 </div>
             </div>
+            :null
+            }
+           
+    
             
         </>
     )
